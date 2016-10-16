@@ -27,8 +27,36 @@ public class BurrowsWheelerTransform {
         StringBuilder result = new StringBuilder();
 
         // write your code here
+        final int textLength = text.length();
+        final int lastSymbolIndex = textLength - 1;
+
+        String[] bwtStrings = new String[textLength];
+
+        StringBuilder bwtStringBuilder;
+        for (int i = lastSymbolIndex; i >= 0; i--) {
+            bwtStringBuilder = new StringBuilder(textLength);
+
+            bwtStringBuilder.append(text.substring(lastSymbolIndex));
+            bwtStringBuilder.append(text.substring(0, lastSymbolIndex));
+
+            text = bwtStringBuilder.toString();
+            bwtStrings[lastSymbolIndex - i] = text;
+        }
+
+//        print(bwtStrings);
+
+        Arrays.sort(bwtStrings);
+        for (String bwtString: bwtStrings) {
+            result.append((bwtString.substring(lastSymbolIndex)));
+        }
 
         return result.toString();
+    }
+
+    static void print(String[] strings) {
+        for(String string: strings) {
+            System.out.println(string);
+        }
     }
 
     static public void main(String[] args) throws IOException {
