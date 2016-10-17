@@ -45,7 +45,22 @@ public class SuffixArray {
     // suffix of text starts.
     public int[] computeSuffixArray(String text) {
         // write your code here
-        return new int[0];
+
+        final int textLength = text.length();
+
+        int[] result = new int[textLength];
+        Suffix[] suffixes = new Suffix[textLength];
+
+        for (int i = 0; i < textLength; i++) {
+            suffixes[i] = new Suffix(text.substring(i), i);
+        }
+        Arrays.sort(suffixes);
+
+        for (int i = 0; i < textLength; i++) {
+            result[i] = suffixes[i].start;
+        }
+
+        return result;
     }
 
 
